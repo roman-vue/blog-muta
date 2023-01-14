@@ -5,8 +5,8 @@ export class SwaggerConfig {
   public static swaggerConfig(app: any): void {
     const config = new DocumentBuilder()
       .addBearerAuth()
-      .setTitle(`DELIVERY`)
-      .setDescription(`DELVY`)
+      .setTitle(`BLOG ♻️ `)
+      .setDescription(`MUTA`)
       .setVersion(`v0.0.1`)
       .build();
 
