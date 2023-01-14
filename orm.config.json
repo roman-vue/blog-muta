@@ -1,0 +1,15 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 8080,
+  "username": "root",
+  "password": "password",
+  "database": "MUTA",
+  "synchronize": false,
+  "entities": ["src/**/**/*.entity{.js,.ts}"],
+  "migrationsTableName": "migrations",
+  "migrations": ["migrations/*{.js,.ts}"],
+  "cli": {
+    "migrationsDir": "migrations"
+  }
+}
