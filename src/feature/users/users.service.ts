@@ -4,10 +4,8 @@ import { User } from 'src/database/entities';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
-import { find } from 'rxjs';
-import { Logger } from '@nestjs/common/services';
 import { NotFoundException } from '@nestjs/common/exceptions';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UsersService {
   constructor(
@@ -15,6 +13,8 @@ export class UsersService {
   ) {}
 
   public async created(createUserDto: CreateUserDto) {
+    const hash = await bcrypt.hash(createUserDto.password, 11);
+    createUserDto.password = hash;
     const newU = await this.usersRepository.save(createUserDto);
     return newU;
   }
@@ -59,7 +59,7 @@ export class UsersService {
 
   public async deleted(idUser: string) {
     const find = await this.findById(idUser);
-    const remove = await this.usersRepository.softDelete(find);
+    const remove = await this.usersRepository.delete(find);
     return `user ${find.email} remove`;
   }
 }

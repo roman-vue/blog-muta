@@ -32,13 +32,4 @@ export class Posts extends BaseEntity {
 
   @OneToMany((type) => Like, (likes) => likes.post)
   likes: Like[];
-
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
-
-  @DeleteDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  deletedAt: Date;
 }

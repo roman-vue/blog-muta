@@ -25,12 +25,4 @@ export class User extends BaseEntity {
   password: string;
   @OneToMany((type) => Posts, (posts) => posts.user)
   post: Posts[];
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
-
-  @DeleteDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  deletedAt: Date;
 }
