@@ -19,37 +19,37 @@ export class PostController {
 
   @Post('created-post')
   public async created(@Body() createPostDto: CreatePostDto) {
-    const data = await this.postsService;
+    const data = await this.postsService.created(createPostDto);
     return data;
   }
 
   @Get('all-post')
   public async allPost() {
-    const data = await this.postsService;
+    const data = await this.postsService.findAll();
     return data;
   }
 
-  @Get('post-by-id/:idPost')
+  @Get('post-by-idPost/:idPost')
   public async postById(@Param('idPost') idPost: string) {
-    const data = await this.postsService;
+    const data = await this.postsService.findOnePost(idPost);
     return data;
   }
 
   @Get('all-post-by-idUser/:idUser')
   public async postByIdUser(@Param('idUser') idUser: string) {
-    const data = await this.postsService;
+    const data = await this.postsService.findAllPostsByIdUser(idUser);
     return data;
   }
 
   @Get('post-by-title/:title')
   public async postByTitle(@Param('title') title: string) {
-    const data = await this.postsService;
+    const data = await this.postsService.findPostsByTitle(title);
     return data;
   }
 
   @Patch('like-to-post/:idPost')
   public async likeToPost(@Param('idPost') idPost: string) {
-    const data = await this.postsService;
+    const data = await this.postsService.likePosts(idPost);
     return data;
   }
 
