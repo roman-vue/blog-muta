@@ -15,6 +15,9 @@ export class Like extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column({ nullable: true })
+  email: string;
+
   @ManyToOne((type) => Posts, (post) => post.likes)
   post: Posts;
 }

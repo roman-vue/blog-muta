@@ -7,12 +7,16 @@ import {
   Patch,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/createPost.dto';
 import { UpdatePostDto } from './dto/updatePost.dto';
+import { AccessGuard } from 'src/guards/access.guard';
 @ApiTags('POSTS')
+@UseGuards(AccessGuard)
+@ApiBearerAuth()
 @Controller('post')
 export class PostController {
   constructor(private readonly postsService: PostService) {}
@@ -56,15 +60,15 @@ export class PostController {
   @Put('updated/:idPost')
   public async updated(
     @Param('idPost') idPost: string,
-    updatePostDto: UpdatePostDto,
+    @Body() updatePostDto: UpdatePostDto,
   ) {
-    const data = await this.postsService;
+    const data = await this.postsService.updated(idPost, updatePostDto);
     return data;
   }
 
-  @Delete('like-to-post/:idPost')
+  @Delete('deleted/:idPost')
   public async deleted(@Param('idPost') idPost: string) {
-    const data = await this.postsService;
+    const data = await this.postsService.deleted(idPost);
     return data;
   }
 }

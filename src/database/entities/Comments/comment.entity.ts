@@ -14,6 +14,8 @@ import { Posts } from '../Posts';
 export class Comment extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+  @Column({ nullable: true })
+  email: string;
 
   @Column()
   content: string;

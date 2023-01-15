@@ -4,8 +4,12 @@ import { UsersService } from './users.service';
 import { Posts } from 'src/database/entities';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AccessGuard } from 'src/guards/access.guard';
+import { UseGuards } from '@nestjs/common/decorators';
 @ApiTags('USERS')
+@UseGuards(AccessGuard)
+@ApiBearerAuth()
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
