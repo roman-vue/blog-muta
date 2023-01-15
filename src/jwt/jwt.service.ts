@@ -1,14 +1,24 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import * as json from 'jsonwebtoken';
 @Injectable()
 export class JwtService {
+  constructor(private readonly configService: ConfigService) {}
   public async generateAccessToken(dataUser: Object) {
-    const token = await json.sign(dataUser, 'Access', { expiresIn: '10h' });
+    const token = await json.sign(
+      dataUser,
+      this.configService.get('ACCESS_TOKEN'),
+      { expiresIn: '10h' },
+    );
     return token;
   }
 
   public async generateRefreshToken(dataUser: Object) {
-    const token = await json.sign(dataUser, 'Refresh', { expiresIn: '24h' });
+    const token = await json.sign(
+      dataUser,
+      this.configService.get('REFRESH_TOKEN'),
+      { expiresIn: '24h' },
+    );
     return token;
   }
 
