@@ -1,3 +1,20 @@
+
+# PUERTO DE EJECUCION -> 3000
+
+# RUTAS DE ACCESO
+## RUTA INICIAL:
+- http://localhost:3000/api/v1/muta
+## RUTA DEL SWAGGER
+ http://localhost:3000/api/v1/muta/docs
+ 
+ # HABILITAR ENDPOINTS PROTEGIDOS EN SWAGGER
+ 1. ejecutar los endpoint de inicio de sesion ```/api/v1/muta/auth/sign-in``` del modulo auth(
+ en caso de que no alla registrado un usuario , ejecutar 
+ ``` /api/v1/muta/auth/sign-up ```)
+ 2. copiar "accessToken" del endpoint  ```/api/v1/muta/auth/sign-in``` y pegarla en el boton **Authorize** 
+ ![imagen](https://user-images.githubusercontent.com/55627800/212522020-e38af14e-429e-45c3-9e8c-7214f314320d.png)
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
