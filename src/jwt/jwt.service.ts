@@ -23,12 +23,18 @@ export class JwtService {
   }
 
   public async verifyToken(token: string) {
-    const verify = await json.verify(token, 'Access');
+    const verify = await json.verify(
+      token,
+      this.configService.get('ACCESS_TOKEN'),
+    );
     return verify;
   }
 
   public async verifyRefreshToken(token: string) {
-    const verify = await json.verify(token, 'Refresh');
+    const verify = await json.verify(
+      token,
+      this.configService.get('REFRESH_TOKEN'),
+    );
     return verify;
   }
 }
